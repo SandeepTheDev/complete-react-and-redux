@@ -1,6 +1,6 @@
 # React Hooks
 
-Hooks are special functions that lets you hook into React features. **Hooks cannot be called conditionally or inside loops**. React hooks can only be used used inside a functional component.
+Hooks were introduced in React v16.8, Hooks are special functions that lets you hook into React features. **Hooks cannot be called conditionally or inside loops**. React hooks can only be used used inside a functional component.
 
 ## useState
 
@@ -28,10 +28,42 @@ The effect hook **lets you perform side effects in functional component**. Effec
 
 `useRef` returns an object with `.current` property initialized with passed argument. `useRef` can be used to **store information in variable** that will be persist for the lifetime of the component. Unlike `useState` it doesn't cause re-render of the component whenever the ref's value changed.
 
-- Using `useRef` with `ref` attribute allows to access DOM element like <input>, <div> directly.
+- Using `useRef` with `ref` attribute allows to access DOM element like `<input />`, `<div>` directly.
 
 ```js
 const count = useRef(0); // {current: 0}
 ```
 
+### forwardRef
+
 In addition of `useRef` hook React expose `forwardRef`, calling forwardRef let component receive a ref and forward it to child component.
+
+### How to get the previous value of props or state?
+
+```js
+import { useEffect, useRef, useState } from "react";
+
+const UsePrevious = () => {
+  const [count, setCount] = useState(0);
+  const prevCount = useRef();
+
+  useEffect(() => {
+    console.log("use effect...");
+    prevCount.current = count;
+  }, [count]);
+
+  console.log("return...");
+  return (
+    <div>
+      <p className="state">
+        count: {count}, prevCount: {prevCount.current}
+      </p>
+      <button onClick={() => setCount((prevState) => prevState + 1)}>
+        Increment count
+      </button>
+    </div>
+  );
+};
+
+export default UsePrevious;
+```
