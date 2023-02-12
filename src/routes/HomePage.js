@@ -6,6 +6,9 @@ const HomePage = () => {
       <Link className="card" to="/use-state">
         <h3>useState hook</h3>
       </Link>
+      <Link className="card" to="/use-reducer">
+        <h3>useReducer hook</h3>
+      </Link>
       <Link className="card" to="/use-ref">
         <h3>useRef hook</h3>
       </Link>

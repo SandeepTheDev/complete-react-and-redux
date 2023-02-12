@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import HomePage from "./routes/HomePage";
 import UsePrevious from "./routes/UsePrevious";
+import UseReducer from "./routes/UseReducer";
 import UseRef from "./routes/UseRef";
 import UseState from "./routes/UseState";
 
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/use-state" element={<UseState />} />
           <Route path="/use-ref" element={<UseRef />} />
           <Route path="/use-previous" element={<UsePrevious />} />
+          <Route path="/use-reducer" element={<UseReducer />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -38,7 +38,7 @@ const count = useRef(0); // {current: 0}
 
 In addition of `useRef` hook React expose `forwardRef`, calling forwardRef let component receive a ref and forward it to child component.
 
-### [How to get the previous value of props or state?](https://github.com/SandeepTheDev/react-hooks/blob/main/src/routes/UsePrevious.js)
+### [How to get previous value of props or state?](https://github.com/SandeepTheDev/react-hooks/blob/main/src/routes/UsePrevious.js)
 
 ```js
 import { useEffect, useRef, useState } from "react";
@@ -67,3 +67,19 @@ const UsePrevious = () => {
 
 export default UsePrevious;
 ```
+
+## [useReducer](https://github.com/SandeepTheDev/react-hooks/blob/main/src/routes/UseReducer.js)
+
+`useReducer` and `useState` both accomplish same thing by using different ways. **`useReducer` lets you move the state update logic into a single function outside of your component**.
+
+```js
+const [state, dispatch] = useReducer(reducerFunc, initialState, createInitialStateFunc?);
+```
+
+- `useReducer` hook takes two arguments **reducerFunc** and **initialState** and one optional argument **createInitialStateFunc** which is called with **createInitialStateFunc(initialState)** and return initial state.
+
+- `useReducer` returns an array with **state** and **dispatch** function.
+
+- **dispatch** function lets you update the state it takes **action** as the only argument and triggers re-render.
+
+- **reducerFunc** is a pure function that takes **currentState** and **action** as the argument and return next state.

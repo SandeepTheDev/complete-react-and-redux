@@ -12,6 +12,7 @@ const UsePrevious = () => {
   console.log("return...");
   return (
     <div>
+      <h2>How to get previous value of props or state?</h2>
       <p className="state">
         count: {count}, prevCount: {prevCount.current}
       </p>
