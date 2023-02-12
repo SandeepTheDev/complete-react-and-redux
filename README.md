@@ -33,3 +33,5 @@ The effect hook **lets you perform side effects in functional component**. Effec
 ```js
 const count = useRef(0); // {current: 0}
 ```
+
+In addition of `useRef` hook React expose `forwardRef`, calling forwardRef let component receive a ref and forward it to child component.
