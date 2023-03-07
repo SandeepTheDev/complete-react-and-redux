@@ -125,3 +125,7 @@ const [state, dispatch] = useReducer(reducerFunc, initialState, createInitialSta
 - **dispatch** function lets you update the state it takes **action** as the only argument and triggers re-render.
 
 - **reducerFunc** is a pure function that takes **currentState** and **action** as the argument and return next state.
+
+## [4. useMemo hook](https://github.com/SandeepTheDev/complete-react-and-redux/blob/main/02-hooks/use-memo/index.js)
+
+`useMemo` is a React Hook that lets you cache the result of a calculation between re-renders.
