@@ -79,3 +79,33 @@ const count = useRef(0); // {current: 0}
 - Unlike `useState` it **doesn't cause re-render of the component whenever the ref's value changed**.
 
 - Using `useRef` with `ref` attribute allows to access DOM element like `<input />`, `<div>` directly.
+
+### forwardRef
+
+In addition of `useRef` hook React expose `forwardRef` api, calling forwardRef let component receive a ref and forward it to child component.
+
+```js
+const RenderCount = React.forwardRef((props, ref) => {
+  return <div ref={ref} />;
+});
+
+const App = () => {
+  const [name, setName] = React.useState("");
+  const renderCount = React.useRef(0);
+  const refElm = React.useRef(null);
+
+  React.useEffect(() => {
+    refElm.current.innerHTML = `I rendered ${renderCount.current}`;
+    renderCount.current = renderCount.current + 1;
+  });
+
+  return (
+    <>
+      <div>useRef hook</div>
+      <input onChange={(e) => setName(e.target.value)} value={name} />
+      <div>{name}</div>
+      <RenderCount ref={refElm} />
+    </>
+  );
+};
+```
