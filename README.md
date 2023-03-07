@@ -6,7 +6,7 @@ Hooks were introduced in React v16.8, Hooks are special functions that lets you 
 
 - React hooks can only be used used inside a functional component.
 
-## [useState](https://github.com/SandeepTheDev/react-hooks/blob/main/src/routes/UseState.js)
+## useState
 
 `useState` hook let you use **state** inside the functional component.
 
@@ -66,7 +66,7 @@ useEffect(() => {
 }, []);
 ```
 
-## [useRef](https://github.com/SandeepTheDev/react-hooks/blob/main/src/routes/UseRef.js)
+## useRef
 
 `useRef` returns an object with `.current` property initialized with passed argument.
 
@@ -80,7 +80,7 @@ const count = useRef(0); // {current: 0}
 
 - Using `useRef` with `ref` attribute allows to access DOM element like `<input />`, `<div>` directly.
 
-### [forwardRef](https://github.com/SandeepTheDev/react-hooks/blob/main/src/routes/UseRef.js#L3)
+### forwardRef
 
 In addition of `useRef` hook React expose `forwardRef` api, calling forwardRef let component receive a ref and forward it to child component.
 
@@ -121,7 +121,7 @@ const UseRef = () => {
 export default UseRef;
 ```
 
-### [How to get previous value of props or state?](https://github.com/SandeepTheDev/react-hooks/blob/main/src/routes/UsePrevious.js)
+### How to get previous value of props or state?
 
 ```js
 import { useEffect, useRef, useState } from "react";
@@ -151,7 +151,7 @@ const UsePrevious = () => {
 export default UsePrevious;
 ```
 
-## [useReducer](https://github.com/SandeepTheDev/react-hooks/blob/main/src/routes/UseReducer.js)
+## useReducer
 
 `useReducer` and `useState` both accomplish same thing by using different ways. **`useReducer` lets you move the state update logic into a single function outside of your component**.
 
