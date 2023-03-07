@@ -1,5 +1,5 @@
 const App = () => {
-  const [count, setCount] = React.useState(0);
+  const [seconds, setSeconds] = React.useState(0);
 
   React.useEffect(() => {
     const interval = setInterval(timerHandler, 1000);
@@ -7,17 +7,17 @@ const App = () => {
   }, []);
 
   React.useEffect(() => {
-    document.title = `useState hook ${count}`;
-  }, [count]);
+    document.title = `useState hook ${seconds}`;
+  }, [seconds]);
 
   const timerHandler = () => {
-    setCount((prevState) => prevState + 1);
+    setSeconds((prevState) => prevState + 1);
   };
 
   return (
     <>
       <div>useEffect hook</div>
-      <div>Seconds: {count}</div>
+      <div>Seconds: {seconds}</div>
     </>
   );
 };

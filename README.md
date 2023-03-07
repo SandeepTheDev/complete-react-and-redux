@@ -1,17 +1,3 @@
-## useRef
-
-`useRef` returns an object with `.current` property initialized with passed argument.
-
-```js
-const count = useRef(0); // {current: 0}
-```
-
-- `useRef` can be used to **store information in variable** that will be persist for the lifetime of the component.
-
-- Unlike `useState` it **doesn't cause re-render of the component whenever the ref's value changed**.
-
-- Using `useRef` with `ref` attribute allows to access DOM element like `<input />`, `<div>` directly.
-
 ### forwardRef
 
 In addition of `useRef` hook React expose `forwardRef` api, calling forwardRef let component receive a ref and forward it to child component.
