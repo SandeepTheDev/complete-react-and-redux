@@ -1,17 +1,17 @@
 const App = () => {
-  const [counter, setCounter] = React.useState(0);
+  const [count, setCount] = React.useState(0);
 
   const handleIncrement = () => {
-    setCounter((prevState) => prevState + 1);
+    setCount((prevState) => prevState + 1);
   };
 
   const handleDecrement = () => {
-    setCounter((prevState) => prevState - 1);
+    setCount((prevState) => prevState - 1);
   };
 
   return (
     <>
-      <div>{counter}</div>
+      <div>{count}</div>
       <button onClick={handleIncrement}>Increment +</button>
       <button onClick={handleDecrement}>Decrement -</button>
     </>

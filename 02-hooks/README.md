@@ -6,7 +6,7 @@ Hooks were introduced in React v16.8, Hooks are special functions that lets you 
 
 - React hooks can only be used used inside a functional component.
 
-## useState
+## [useState](https://github.com/SandeepTheDev/complete-react-and-redux/blob/main/02-hooks/use-state-hook/index.js)
 
 `useState` hook let you use **state** inside the functional component.
 
