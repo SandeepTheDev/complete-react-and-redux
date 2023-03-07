@@ -109,3 +109,19 @@ const App = () => {
   );
 };
 ```
+
+## [4. useReducer hook](https://github.com/SandeepTheDev/complete-react-and-redux/blob/main/02-hooks/use-reducer/index.js)
+
+`useReducer` and `useState` both accomplish same thing by using different ways. **`useReducer` lets you move the state update logic into a single function outside of your component**.
+
+```js
+const [state, dispatch] = useReducer(reducerFunc, initialState, createInitialStateFunc?);
+```
+
+- `useReducer` hook takes two arguments **reducerFunc** and **initialState** and one optional argument **createInitialStateFunc** which is called with **createInitialStateFunc(initialState)** and return initial state.
+
+- `useReducer` returns an array with **state** and **dispatch** function.
+
+- **dispatch** function lets you update the state it takes **action** as the only argument and triggers re-render.
+
+- **reducerFunc** is a pure function that takes **currentState** and **action** as the argument and return next state.
