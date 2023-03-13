@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# React Performance
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Basically React Performance can be divided into two categories:
 
-## Available Scripts
+- How can we make our render to take less time.
+- How can we minimize the number of renders.
 
-In the project directory, you can run:
+## `useMemo`
 
-### `npm start`
+A React hook to memoize a value. The `useMemo` hook takes in a function that returns a value to be memoized and an dependency array. The `useMemo` hook returns the memoized value, and it only calls the passed in function to recalculate the value if an item in the dependency array changes.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```js
+const value = useMemo(() => {
+  return slowFunction(x, y);
+}, [x, y]);
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## `useCallback`
 
-### `npm test`
+A React hook for memoizing a function. The `useCallback` hook works the exact same as `useMemo` except rather than memoizing the return value of a function, it memoizes the entire function. This can be useful for a variety of reasons, such as `useCallback` hook is used when you have a component in which a child is rendering repeatedly without the need for it.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+const value = useCallback(() => {
+  console.log(x, y);
+}, [x, y]);
+```
 
-### `npm run build`
+## `React.memo`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A React higher order component that takes in a component and returns a memoized version of that component. If the props have not changed, wrapping a component in `React.memo` will cause it to avoid re-rendering. This function optionally also takes in second callback function as a parameter to determine when the component should re-render with more fine control. For example, this component will only re-render when the number of props changes:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```js
+const MemoizedComponent = React.memo(MyComponent, areEqual);
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+function areEqual(oldProps, newProps) {
+  return oldProps === newProps;
+}
+```
 
-### `npm run eject`
+## `React.lazy`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+A React function for dynamically importing components, creating a potential performance boost when certain components are included in modules but not necessary for the initial render. The `lazy` function takes in a callback that is run when the component is used, and this function should return a call to the `import` function.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+const LazyComponent = react.lazy(() => import("./MyComponent"));
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## `React.Suspense`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+A react component for specifying a fallback interface while a child component is preparing to render (such as waiting for lazy import). The `Suspense` component takes a `fallback` prop of React element, and its `children` prop is a suspending component.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```js
+<Suspense fallback={<LoadingIndicator />}>
+  <LazyComponent />
+</Suspense>
+```
